@@ -1,0 +1,10 @@
+sh.updateZoneKeyRange("iphone_reviews.Amazon", { productAsin: "B09G9BL5CP" }, { productAsin: "B09G9BL5CQ" }, "iPhone13")
+sh.updateZoneKeyRange("iphone_reviews.Amazon", { productAsin: "B09P82T3PZ" }, { productAsin: "B09P82T3QA" }, "iPhone13")
+sh.updateZoneKeyRange("iphone_reviews.Amazon", { productAsin: "B09G9D8KRQ" }, { productAsin: "B09G9D8KRR" }, "iPhone13")
+sh.updateZoneKeyRange("iphone_reviews.Amazon", { productAsin: "B09G9J5JZX" }, { productAsin: "B09G9J5JZY" }, "iPhone13")
+
+
+sh.updateZoneKeyRange("iphone_reviews.Amazon", { productAsin: "B0BN72MLT2" }, { productAsin: "B0BN72MLT3" }, "iPhone14")
+sh.updateZoneKeyRange("iphone_reviews.Amazon", { productAsin: "B0BDK8LKPJ" }, { productAsin: "B0BDK8LKPK" }, "iPhone14")
+
+sh.updateZoneKeyRange("iphone_reviews.Amazon", { productAsin: "B0CHX1W1XY" }, { productAsin: "B0CHX1W1XZ" }, "iPhone15")

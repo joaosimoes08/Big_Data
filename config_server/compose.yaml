@@ -1,0 +1,46 @@
+version: '3'
+
+networks:
+  mongo-meiiot:
+    name: mongo-meiiot
+    driver: bridge
+
+services:
+
+  configsvr1:
+    container_name: configsvr1
+    image: mongo:8.0
+    command: mongod --configsvr --replSet config_rs --dbpath /data/db --bind_ip_all --port 27017
+    ports:
+      - 10001:27017
+    volumes:
+      - configsvr1:/data/db
+    networks:
+      - mongo-meiiot
+
+  configsvr2:
+    container_name: configsvr2
+    image: mongo:8.0
+    command: mongod --configsvr --replSet config_rs --dbpath /data/db --bind_ip_all --port 27017
+    ports:
+      - 10002:27017
+    volumes:
+      - configsvr2:/data/db
+    networks:
+      - mongo-meiiot
+
+  configsvr3:
+    container_name: configsvr3
+    image: mongo:8.0
+    command: mongod --configsvr --replSet config_rs --dbpath /data/db --bind_ip_all --port 27017
+    ports:
+      - 10003:27017
+    volumes:
+      - configsvr3:/data/db
+    networks:
+      - mongo-meiiot
+
+volumes:
+  configsvr1:
+  configsvr2:
+  configsvr3:

@@ -1,0 +1,85 @@
+#iPhone 15 Pro (5a) iPhone 15 (5b)
+
+version: '3'
+
+networks:
+  mongo-meiiot:
+    name: mongo-meiiot
+    driver: bridge
+
+services:
+  #iPhone 15 PRO
+  shardsvr5a_1:
+    container_name: shardsvr5a_primary
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard5a_rs --dbpath /data/db --port 27017
+    ports:
+      - 27901:27017
+    volumes:
+      - shardsvr5a_1:/data/db
+    networks:
+      - mongo-meiiot
+
+  shardsvr5a_2:
+    container_name: shardsvr5a_secondary1
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard5a_rs --dbpath /data/db --port 27017
+    ports:
+      - 27902:27017
+    volumes:
+      - shardsvr5a_2:/data/db
+    networks:
+      - mongo-meiiot
+
+  shardsvr5a_3:
+    container_name: shardsvr5a_secondary2
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard5a_rs --dbpath /data/db --port 27017
+    ports:
+      - 27903:27017
+    volumes:
+      - shardsvr5a_3:/data/db
+    networks:
+      - mongo-meiiot
+
+  #iPhone 15
+  shardsvr5b_1:
+    container_name: shardsvr5b_primary
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard5b_rs --dbpath /data/db --port 27017
+    ports:
+      - 28001:27017
+    volumes:
+      - shardsvr5b_1:/data/db
+    networks:
+      - mongo-meiiot
+
+  shardsvr5b_2:
+    container_name: shardsvr5b_secondary1
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard5b_rs --dbpath /data/db --port 27017
+    ports:
+      - 28002:27017
+    volumes:
+      - shardsvr5b_2:/data/db
+    networks:
+      - mongo-meiiot
+
+  shardsvr5b_3:
+    container_name: shardsvr5b_secondary2
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard5b_rs --dbpath /data/db --port 27017
+    ports:
+      - 28003:27017
+    volumes:
+      - shardsvr5b_3:/data/db
+    networks:
+      - mongo-meiiot
+      
+volumes:
+  shardsvr5a_1:
+  shardsvr5a_2:
+  shardsvr5a_3:
+  shardsvr5b_1:
+  shardsvr5b_2:
+  shardsvr5b_3:

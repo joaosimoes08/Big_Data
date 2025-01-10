@@ -1,0 +1,85 @@
+#iPhone 12 Pro (2a) iPhone 12 (2b)
+
+version: '3'
+
+networks:
+  mongo-meiiot:
+    name: mongo-meiiot
+    driver: bridge
+
+services:
+  #iPhone 12 PRO
+  shardsvr2a_1:
+    container_name: shardsvr2a_primary
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard2a_rs --dbpath /data/db --bind_ip_all --port 27017
+    ports:
+      - 27301:27017
+    volumes:
+      - shardsvr2a_1:/data/db
+    networks:
+      - mongo-meiiot
+
+  shardsvr2a_2:
+    container_name: shardsvr2a_secondary1
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard2a_rs --dbpath /data/db --bind_ip_all --port 27017
+    ports:
+      - 27302:27017
+    volumes:
+      - shardsvr2a_2:/data/db
+    networks:
+      - mongo-meiiot
+
+  shardsvr2a_3:
+    container_name: shardsvr2a_secondary2
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard2a_rs --dbpath /data/db --bind_ip_all --port 27017
+    ports:
+      - 27303:27017
+    volumes:
+      - shardsvr2a_3:/data/db
+    networks:
+      - mongo-meiiot
+
+  #iPhone 12
+  shardsvr2b_1:
+    container_name: shardsvr2b_primary
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard2b_rs --dbpath /data/db --bind_ip_all --port 27017
+    ports:
+      - 27401:27017
+    volumes:
+      - shardsvr2b_1:/data/db
+    networks:
+      - mongo-meiiot
+
+  shardsvr2b_2:
+    container_name: shardsvr2b_secondary1
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard2b_rs --dbpath /data/db --bind_ip_all --port 27017
+    ports:
+      - 27402:27017
+    volumes:
+      - shardsvr2b_2:/data/db
+    networks:
+      - mongo-meiiot
+
+  shardsvr2b_3:
+    container_name: shardsvr2b_secondary2
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard2b_rs --dbpath /data/db --bind_ip_all --port 27017
+    ports:
+      - 27403:27017
+    volumes:
+      - shardsvr2b_3:/data/db
+    networks:
+      - mongo-meiiot
+
+volumes:
+  shardsvr2a_1:
+  shardsvr2a_2:
+  shardsvr2a_3:
+  shardsvr2b_1:
+  shardsvr2b_2:
+  shardsvr2b_3:

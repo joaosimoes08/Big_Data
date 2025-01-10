@@ -1,0 +1,86 @@
+#iPhone 13 Pro (3a) iPhone 13 (3b)
+
+version: '3'
+
+networks:
+  mongo-meiiot:
+    name: mongo-meiiot
+    driver: bridge
+
+services:
+  #iPhone 13 PRO
+  shardsvr3a_1:
+    container_name: shardsvr3a_primary
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard3a_rs --dbpath /data/db --port 27017
+    ports:
+      - 27501:27017
+    volumes:
+      - shardsvr3a_1:/data/db
+    networks:
+      - mongo-meiiot
+
+
+  shardsvr3a_2:
+    container_name: shardsvr3a_secondary1
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard3a_rs --dbpath /data/db --port 27017
+    ports:
+      - 27502:27017
+    volumes:
+      - shardsvr3a_2:/data/db
+    networks:
+      - mongo-meiiot
+
+  shardsvr3a_3:
+    container_name: shardsvr3a_secondary2
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard3a_rs --dbpath /data/db --port 27017
+    ports:
+      - 27503:27017
+    volumes:
+      - shardsvr3a_3:/data/db
+    networks:
+      - mongo-meiiot
+
+  #iPhone 13
+  shardsvr3b_1:
+    container_name: shardsvr3b_primary
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard3b_rs --dbpath /data/db --port 27017
+    ports:
+      - 27601:27017
+    volumes:
+      - shardsvr3b_1:/data/db
+    networks:
+      - mongo-meiiot
+
+  shardsvr3b_2:
+    container_name: shardsvr3b_secondary1
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard3b_rs --dbpath /data/db --port 27017
+    ports:
+      - 27602:27017
+    volumes:
+      - shardsvr3b_2:/data/db
+    networks:
+      - mongo-meiiot
+
+  shardsvr3b_3:
+    container_name: shardsvr3b_secondary2
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard3b_rs --dbpath /data/db --port 27017
+    ports:
+      - 27603:27017
+    volumes:
+      - shardsvr3b_3:/data/db
+    networks:
+      - mongo-meiiot
+      
+volumes:
+  shardsvr3a_1:
+  shardsvr3a_2:
+  shardsvr3a_3:
+  shardsvr3b_1:
+  shardsvr3b_2:
+  shardsvr3b_3:

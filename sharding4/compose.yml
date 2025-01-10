@@ -1,0 +1,85 @@
+#iPhone 14 Pro (4a) iPhone 14 (4b)
+
+version: '3'
+
+networks:
+  mongo-meiiot:
+    name: mongo-meiiot
+    driver: bridge
+
+services:
+  #iPhone 14 PRO
+  shardsvr4a_1:
+    container_name: shardsvr4a_primary
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard4a_rs --dbpath /data/db --port 27017
+    ports:
+      - 27701:27017
+    volumes:
+      - shardsvr4a_1:/data/db
+    networks:
+      - mongo-meiiot
+
+  shardsvr4a_2:
+    container_name: shardsvr4a_secondary1
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard4a_rs --dbpath /data/db --port 27017
+    ports:
+      - 27702:27017
+    volumes:
+      - shardsvr4a_2:/data/db
+    networks:
+      - mongo-meiiot
+
+  shardsvr4a_3:
+    container_name: shardsvr4a_secondary2
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard4a_rs --dbpath /data/db --port 27017
+    ports:
+      - 27703:27017
+    volumes:
+      - shardsvr4a_3:/data/db
+    networks:
+      - mongo-meiiot
+
+  #iPhone 14
+  shardsvr4b_1:
+    container_name: shardsvr4b_primary
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard4b_rs --dbpath /data/db --port 27017
+    ports:
+      - 27801:27017
+    volumes:
+      - shardsvr4b_1:/data/db
+    networks:
+      - mongo-meiiot
+
+  shardsvr4b_2:
+    container_name: shardsvr4b_secondary1
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard4b_rs --dbpath /data/db --port 27017
+    ports:
+      - 27802:27017
+    volumes:
+      - shardsvr4b_2:/data/db
+    networks:
+      - mongo-meiiot
+
+  shardsvr4b_3:
+    container_name: shardsvr4b_secondary2
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard4b_rs --dbpath /data/db --port 27017
+    ports:
+      - 27803:27017
+    volumes:
+      - shardsvr4b_3:/data/db
+    networks:
+      - mongo-meiiot
+
+volumes:
+  shardsvr4a_1:
+  shardsvr4a_2:
+  shardsvr4a_3:
+  shardsvr4b_1:
+  shardsvr4b_2:
+  shardsvr4b_3:
