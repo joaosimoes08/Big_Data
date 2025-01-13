@@ -1,4 +1,4 @@
-##Projecto Big Data IPBEJA 2024
+## Projecto Big Data IPBEJA 2024
 
 ## Autores
 - [João Viegas Simões](https://github.com/joaosimoes08)
