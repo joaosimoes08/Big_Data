@@ -9,7 +9,7 @@ services:
 
   configsvr1:
     container_name: configsvr1
-    image: mongo:8.0
+    image: mongo:latest
     command: mongod --configsvr --replSet config_rs --dbpath /data/db --bind_ip_all --port 27017
     ports:
       - 10001:27017
@@ -20,7 +20,7 @@ services:
 
   configsvr2:
     container_name: configsvr2
-    image: mongo:8.0
+    image: mongo:latest
     command: mongod --configsvr --replSet config_rs --dbpath /data/db --bind_ip_all --port 27017
     ports:
       - 10002:27017
@@ -31,7 +31,7 @@ services:
 
   configsvr3:
     container_name: configsvr3
-    image: mongo:8.0
+    image: mongo:latest
     command: mongod --configsvr --replSet config_rs --dbpath /data/db --bind_ip_all --port 27017
     ports:
       - 10003:27017
